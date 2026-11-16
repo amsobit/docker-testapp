@@ -36,6 +36,22 @@ app.post('/add-user', async (req, res) => {
   }
 });
 
+app.get("/getUsers", async (req, res) => {
+   let connection;
+  try {
+    connection = await mysql.createConnection(dbConfig);
+    const sql = 'select * from users';
+    const [result] = await connection.execute(sql);
+    res.json({ users: result });
+  } catch (error) {
+    console.error('Database error:', error.message);
+    res.status(500).json({ error: 'Database reading failed.' });
+  } finally {
+    if (connection) await connection.end();
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
