@@ -7,6 +7,10 @@ const PORT = 5050;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
+});
+
 const MONGO_URL = "mongodb://admin:qwerty@localhost:27017";
 const client = new MongoClient(MONGO_URL);
 
@@ -37,6 +41,3 @@ app.post("/addUser", async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`);
-});
