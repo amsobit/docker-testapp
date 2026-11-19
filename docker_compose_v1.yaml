@@ -6,7 +6,7 @@ services:
     - "27017:27017"
     environment:
     - MONGO_INITDB_ROOT_USERNAME=${dbUser}
-    - MONGO_INITDB_ROOT_PASSWORD=${dbPass}
+    - MONGO_INITDB_ROOT_PASSWORD=${dbPass}   
     networks:
     - mongo-network
 
@@ -19,12 +19,11 @@ services:
     - ME_CONFIG_MONGODB_ADMINUSERNAME=${dbUser}
     - ME_CONFIG_MONGODB_ADMINPASSWORD=${dbPass}
     - ME_CONFIG_MONGODB_URL=mongodb://${dbUser}:${dbPass}@mongo:27017
-    
     depends_on:
-      - mongo
+    - mongo
     networks:
     - mongo-network
 
 networks:
-  mongo-network:
+ mongo-network:
   driver: bridge
